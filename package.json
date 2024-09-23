@@ -1,0 +1,32 @@
+{
+  "name": "puppe-pdf",
+  "version": "1.0.0",
+  "description": "convert HTML or any website to pdf flawlessly in seconds!",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balaji-atoa/puppe-pdf.git"
+  },
+  "keywords": [
+    "htmltopdf",
+    "pdf",
+    "puppeteer"
+  ],
+  "author": "Balaji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/balaji-atoa/puppe-pdf/issues"
+  },
+  "homepage": "https://github.com/balaji-atoa/puppe-pdf#readme",
+  "dependencies": {
+    "puppeteer": "^23.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7",
+    "standard": "^17.1.2"
+  }
+}
