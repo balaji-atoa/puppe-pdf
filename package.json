@@ -4,7 +4,7 @@
   "description": "convert HTML or any website to pdf flawlessly in seconds!",
   "main": "index.js",
   "scripts": {
-    "lint-fix":"standard --fix",
+    "lint-fix": "standard --fix",
     "test": "standard"
   },
   "repository": {
@@ -26,6 +26,7 @@
     "puppeteer": "^23.4.0"
   },
   "devDependencies": {
+    "express": "^4.21.0",
     "standard": "^17.1.2"
   }
 }
