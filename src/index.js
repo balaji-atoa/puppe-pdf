@@ -34,6 +34,7 @@ class PuppePdf {
       }
 
       if (opts?.viewPort && typeof opts.viewPort === 'object' && opts.viewPort?.height && opts.viewPort?.width) {
+        // only if height and width is passed, we will use it else use default viewport
         viewportOpts = opts.viewPort
       }
       await page.setViewport(viewportOpts)
