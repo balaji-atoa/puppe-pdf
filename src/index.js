@@ -21,7 +21,7 @@ class PuppePdf {
       // invoke on demand
       if (opts?.launchOpts && typeof launchOpts === 'object') {
         browser = await puppeteer.launch({
-          headless: 'shell', ...opts.launchOpts
+          ...DEFAULT_LAUNCH_OPTIONS, ...opts.launchOpts
         })
       } else { browser = await puppeteer.launch(DEFAULT_LAUNCH_OPTIONS) }
 
