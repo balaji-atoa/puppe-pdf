@@ -6,7 +6,7 @@ const DEFAULT_PDF_OPTIONS = {
 }
 const DEFAULT_LAUNCH_OPTIONS = {
   headless: 'shell', // using shell mode as it is the fastest
-  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-extensions'],
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-extensions']
 }
 const DEFAULT_JAVASCRIPT_SETTING = true
 const TEST_URL_TO_EXPORT = 'https://pptr.dev/guides/what-is-puppeteer'
