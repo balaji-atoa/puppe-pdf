@@ -16,6 +16,9 @@ ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
 
 # Install dependencies and Puppeteer
 WORKDIR /usr/app
+COPY ./customFonts ./customFonts
+RUN mkdir -p /usr/share/fonts/truetype
+RUN install -m644 ./customFonts/stocky.ttf /usr/share/fonts/truetype
 COPY package.json ./
 COPY ./src ./src
 COPY ./examples ./examples

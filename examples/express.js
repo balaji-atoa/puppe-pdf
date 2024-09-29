@@ -1,7 +1,12 @@
 const express = require('express')
+const fs = require('node:fs')
 const puppePdf = require('../src/index')
 const { TEST_URL_TO_EXPORT } = require('../src/constants')
+const path = require('node:path')
 const server = express()
+const customFontsHtml = fs.readFileSync(path.join(__dirname, 'customFontsHtml.html'), {
+  encoding: 'utf8'
+})
 
 server.get('/stream', async (_, res) => {
   // pipe pdf stream to response
@@ -19,6 +24,10 @@ server.get('/buffer', async (_, res) => {
   const pdf = await puppePdf.convertUrlToPdf(TEST_URL_TO_EXPORT)
   res.header('Content-Type', 'application/pdf')
   res.status(200).send(pdf)
+})
+
+server.get('/custom-font', async (_, res) => {
+  res.status(200).send(customFontsHtml)
 })
 
 server.get('/', async (_, res) => {
