@@ -49,10 +49,11 @@ class PuppePdf {
         console.log(`Page Error! \n ${err}`)
       })
 
-      if (!opts?.url) throw new Error('provide a valid URL to visit on puppeteer')
-      if (opts?.goToOptions && typeof opts.goToOptions !== 'object') throw new Error('provide valid goToOptions for puppeteer')
+      if (!opts?.url && !opts?.html) throw new Error('provide a valid URL or HTML to visit on puppeteer')
+      if (opts?.url && opts?.goToOptions && typeof opts.goToOptions !== 'object') throw new Error('provide valid goToOptions for puppeteer')
 
-      await page.goto(opts.url, opts.goToOptions || {})
+      if (opts?.url) { await page.goto(opts.url, opts.goToOptions || {}) } else if (opts?.html && typeof opts.html === 'string') { await page.setContent(opts.html) } else { throw new Error('no valid URL or HTML provided') }
+
       await page.waitForNetworkIdle()
 
       if (opts?.selectorToWait && typeof opts.selectorToWait !== 'string') throw new Error('selectorToWait should be a string')
@@ -84,6 +85,7 @@ class PuppePdf {
       // default return value is a buffer
       return Buffer.from(pdf.buffer)
     } finally {
+      // to prevent memory leak
       if (invoked) {
         await page.close()
         await browser.close()

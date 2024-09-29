@@ -20,7 +20,8 @@ declare namespace PuppePdf{
     /** 
      * the url which needs to be visited.
     */
-    url: string;
+    url?: string;
+    html?: string;
     /**
      * The options passed to the browser during puppeteer browser launch.
      */

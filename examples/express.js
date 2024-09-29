@@ -27,7 +27,13 @@ server.get('/buffer', async (_, res) => {
 })
 
 server.get('/custom-font', async (_, res) => {
-  res.status(200).send(customFontsHtml)
+  const pdf = await puppePdf.forgePDF({
+    html: customFontsHtml,
+    stream: true
+  })
+  res.header('Content-Type', 'application/pdf')
+  res.status(200)
+  pdf.pipe(res)
 })
 
 server.get('/', async (_, res) => {
