@@ -4,7 +4,7 @@
   "description": "convert HTML or any website to pdf flawlessly in seconds!",
   "main": "index.js",
   "scripts": {
-    "lint-fix": "standard --fix && git add -A",
+    "lint-fix": "standard --fix",
     "test": "standard && tape test/core.js",
     "prepare": "husky"
   },
