@@ -5,5 +5,5 @@ const opts = {
 };
 
 (async () => {
-  console.log(await puppePdf.convertUrlToPdf(opts))
+  console.log(await puppePdf.forgePDF(opts))
 })()

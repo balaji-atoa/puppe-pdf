@@ -10,7 +10,7 @@ const customFontsHtml = fs.readFileSync(path.join(__dirname, 'customFontsHtml.ht
 
 server.get('/stream', async (_, res) => {
   // pipe pdf stream to response
-  const pdfStream = await puppePdf.convertUrlToPdf({
+  const pdfStream = await puppePdf.forgePDF({
     url: TEST_URL_TO_EXPORT,
     stream: true
   })
@@ -21,7 +21,7 @@ server.get('/stream', async (_, res) => {
 
 server.get('/buffer', async (_, res) => {
   // attach pdf to response
-  const pdf = await puppePdf.convertUrlToPdf(TEST_URL_TO_EXPORT)
+  const pdf = await puppePdf.forgePDF(TEST_URL_TO_EXPORT)
   res.header('Content-Type', 'application/pdf')
   res.status(200).send(pdf)
 })

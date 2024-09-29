@@ -1,7 +1,7 @@
 import { BrowserConnectOptions, GoToOptions, LaunchOptions, LowerCasePaperFormat, PaperFormat, PDFOptions, Viewport, WaitForSelectorOptions } from "puppeteer";
 import type {Readable} from "stream"
 declare namespace PuppePdf{
-  function convertUrlToPdf(otps: UrlOptions | string):Promise<Buffer | Readable | Uint8Array>
+  function forgePDF(otps: UrlOptions | string):Promise<Buffer | Readable | Uint8Array>
   interface PDFOptions {
     format?: PaperFormat | string
   }

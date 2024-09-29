@@ -6,7 +6,7 @@ const stream = require('node:stream')
 const { DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_PDF_OPTIONS, DEFAULT_LAUNCH_OPTIONS } = require('./constants')
 
 class PuppePdf {
-  static async convertUrlToPdf (opts) {
+  static async forgePDF (opts) {
     let invoked = false
     let page
     let browser

@@ -13,7 +13,7 @@ const options = {
 }
 
 async function wrapper() {
-  const pdf = await PuppePdf.convertUrlToPdf(options)
+  const pdf = await PuppePdf.forgePDF(options)
   console.log(pdf) // logs the pdf as stream
 }
 
