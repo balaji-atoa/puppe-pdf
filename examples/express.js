@@ -4,7 +4,7 @@ const puppePdf = require('../src/index')
 const { TEST_URL_TO_EXPORT } = require('../src/constants')
 const path = require('node:path')
 const server = express()
-const customFontsHtml = fs.readFileSync(path.join(__dirname, 'customFontsHtml.html'), {
+const customFontsHtml = fs.readFileSync(path.join(__dirname, 'customFonts.html'), {
   encoding: 'utf8'
 })
 
