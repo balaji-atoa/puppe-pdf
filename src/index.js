@@ -32,7 +32,7 @@ class PuppePdf {
         width: DEFAULT_WIDTH,
         height: DEFAULT_HEIGHT
       }
-
+      if (opts?.viewPort && typeof opts.viewPort !== 'object') throw new Error(`pls provide valid viewPort options recieved typeof ${typeof opts.viewPort}`)
       if (opts?.viewPort && typeof opts.viewPort === 'object' && opts.viewPort?.height && opts.viewPort?.width) {
         // only if height and width is passed, we will use it else use default viewport
         viewportOpts = opts.viewPort
@@ -84,6 +84,9 @@ class PuppePdf {
       }
       // default return value is a buffer
       return Buffer.from(pdf.buffer)
+    } catch (err) {
+      if (err.message === 'Protocol error (Page.navigate): Cannot navigate to invalid URL') throw new Error('please provide a valid URL in options')
+      throw err
     } finally {
       // to prevent memory leak
       if (invoked) {
