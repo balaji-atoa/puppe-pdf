@@ -23,8 +23,9 @@ const DEFAULT_LAUNCH_OPTIONS = {
     '--metrics-recording-only',
     '--enable-fast-unload',
     '--disable-print-preview',
-    '--disable-breakpad'
-  ]
+    '--disable-breakpad',
+    '--disable-software-video-decoders'
+  ] // use chat-gpt to decode the args
 }
 const TEST_URL_TO_EXPORT = 'https://pptr.dev/guides/what-is-puppeteer'
 module.exports = { DEFAULT_PDF_OPTIONS, DEFAULT_LAUNCH_OPTIONS, TEST_URL_TO_EXPORT }
