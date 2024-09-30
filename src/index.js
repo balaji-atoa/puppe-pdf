@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer')
 const fs = require('node:fs')
 const stream = require('node:stream')
 
-const { DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_PDF_OPTIONS, DEFAULT_LAUNCH_OPTIONS } = require('./constants')
+const { DEFAULT_PDF_OPTIONS, DEFAULT_LAUNCH_OPTIONS } = require('./constants')
 
 class PuppePdf {
   static async forgePDF (opts) {
@@ -28,16 +28,6 @@ class PuppePdf {
       page = await browser.newPage()
       invoked = true
 
-      let viewportOpts = {
-        width: DEFAULT_WIDTH,
-        height: DEFAULT_HEIGHT
-      }
-      if (opts?.viewPort && typeof opts.viewPort !== 'object') throw new Error(`pls provide valid viewPort options recieved typeof ${typeof opts.viewPort}`)
-      if (opts?.viewPort && typeof opts.viewPort === 'object' && opts.viewPort?.height && opts.viewPort?.width) {
-        // only if height and width is passed, we will use it else use default viewport
-        viewportOpts = opts.viewPort
-      }
-      await page.setViewport(viewportOpts)
       if (opts?.disableJavascript && typeof opts.disableJavascript === 'boolean' && opts.disableJavascript) { await page.setJavaScriptEnabled(false) } else { await page.setJavaScriptEnabled(true) }
       // if user agent is not set, it'll be slow.
       await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3851.0 Safari/537.36')

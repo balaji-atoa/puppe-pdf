@@ -5,11 +5,7 @@ const options = {
   pdfOpts: {
     format: 'A4',
   },
-  stream: true,
-  viewPort: {
-    height: 1080,
-    width: 1920
-  }
+  stream: true
 }
 
 async function wrapper() {
