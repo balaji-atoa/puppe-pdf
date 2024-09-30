@@ -27,8 +27,8 @@ class PuppePdf {
 
       page = await browser.newPage()
       invoked = true
-
-      if (opts?.disableJavascript && typeof opts.disableJavascript === 'boolean' && opts.disableJavascript) { await page.setJavaScriptEnabled(false) } else { await page.setJavaScriptEnabled(true) }
+      if (opts?.disableJavascript && typeof opts.disableJavascript !== 'boolean') throw new Error('disableJavascript should be a boolean')
+      if (opts?.disableJavascript) { await page.setJavaScriptEnabled(false) }
       // if user agent is not set, it'll be slow.
       await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3851.0 Safari/537.36')
 

@@ -5,6 +5,7 @@ const pdfParse = require('pdf-parse')
 const puppePdf = require('../src/index')
 const { TEST_URL_TO_EXPORT } = require('../src/constants')
 const baseHtml = fs.readFileSync(path.join(__dirname, 'html', 'base.html'), 'utf8')
+const testJsHtml = fs.readFileSync(path.join(__dirname, 'html', 'testJs.html'), 'utf8')
 
 // testcase - 1
 test('directly passing string to forgePdf should convert the website2pdf', async (t) => {
@@ -62,6 +63,7 @@ test('provide an invalid url should fail with user friendly error message', asyn
 
   try {
     await puppePdf.forgePDF('some-invalid-url')
+    t.fail('did not work as expected')
   } catch (err) {
     err.message.match(/please provide a valid URL in options/) ? t.pass('throws an user friendly exception') : t.fail('doesn\'t work as expected')
   }
@@ -79,4 +81,33 @@ test('if both url and html is passed, then the url should take the precedence', 
 
   t.equal(parsed.info.Title, 'What is Puppeteer? | Puppeteer')
   t.equal(parsed.info.Creator, 'Chromium')
+})
+
+// testcase - 7
+test('if disable javascript is invalid, throw an user friendly err', async (t) => {
+  t.plan(1)
+
+  try {
+    await puppePdf.forgePDF({
+      html: baseHtml,
+      disableJavascript: 'some-invalid'
+    })
+    t.fail('did not work as expected')
+  } catch (error) {
+    error.message.match(/disableJavascript should be a boolean/) ? t.pass('thrown as expected') : t.fail("didn't work as expected")
+  }
+})
+
+// testcase - 8
+test('should disableJavascript if it is set to true', async (t) => {
+  t.plan(2)
+
+  const pdf = await puppePdf.forgePDF({
+    html: testJsHtml,
+    disableJavascript: true
+  })
+  const parsed = await pdfParse(pdf)
+
+  t.ok(!parsed.text.includes('Puppe Pdf is the best'))
+  t.equal(parsed.info.Title, 'Puppe Pdf > JS disabled')
 })
