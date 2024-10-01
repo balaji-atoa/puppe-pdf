@@ -33,10 +33,7 @@ class PuppePdf {
       await page.setUserAgent('Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3851.0 Safari/537.36')
 
       page.on('pageerror', (err) => {
-        if (opts?.failOnPageError && typeof opts.failOnPageError === 'boolean' && opts.failOnPageError) {
-          throw new Error(err)
-        }
-        console.log(`Page Error! \n ${err}`)
+        console.log(`Page Error => ${err}`)
       })
 
       if (!opts?.url && !opts?.html) throw new Error('provide a valid URL or HTML to visit on puppeteer')

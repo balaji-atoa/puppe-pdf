@@ -6,6 +6,7 @@ const puppePdf = require('../src/index')
 const { TEST_URL_TO_EXPORT } = require('../src/constants')
 const baseHtml = fs.readFileSync(path.join(__dirname, 'html', 'base.html'), 'utf8')
 const testJsHtml = fs.readFileSync(path.join(__dirname, 'html', 'testJs.html'), 'utf8')
+const pageErrorHtml = fs.readFileSync(path.join(__dirname, 'html', 'errorJs.html'), 'utf8')
 
 // testcase - 1
 test('directly passing string to forgePdf should convert the website2pdf', async (t) => {
@@ -110,4 +111,31 @@ test('should disableJavascript if it is set to true', async (t) => {
 
   t.ok(!parsed.text.includes('Puppe Pdf is the best'))
   t.equal(parsed.info.Title, 'Puppe Pdf > JS disabled')
+})
+
+// testcase - 9
+test('default behaviour -> should log page error', async (t) => {
+  t.plan(2)
+  // Save the original console.log
+  const originalLog = console.log
+
+  // Create a mock console.log function
+  const logOutput = []
+  console.log = (message) => {
+    logOutput.push(message)
+  }
+
+  // Call the code that uses console.log
+  await puppePdf.forgePDF({
+    html: pageErrorHtml
+  })
+
+  // Test if console.log was called with the expected message
+  t.equal(logOutput.length, 1, 'console.log should be called once')
+  t.equal(logOutput[0], 'Page Error => Error: Log this error to console')
+
+  // Restore the original console.log
+  console.log = originalLog
+
+  t.end()
 })

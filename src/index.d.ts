@@ -26,7 +26,6 @@ declare namespace PuppePdf{
      * The options passed to the browser during puppeteer browser launch.
      */
     launchOpts?: launchOpts;
-    failOnPageError?: boolean;
     goToOptions?: GoToOptions;
     selectorToWait?: string;
     waitForSelectorOpts?: WaitForSelectorOptions;
