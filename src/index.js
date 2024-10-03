@@ -43,24 +43,28 @@ class PuppePdf {
 
       await page.waitForNetworkIdle()
 
-      if (opts?.selectorToWait && typeof opts.selectorToWait !== 'string') throw new Error('selectorToWait should be a string')
+      if (opts?.waitForSelector && typeof opts.waitForSelector !== 'string') throw new Error('waitForSelector should be a string')
       if (opts?.waitForSelectorOpts && typeof opts.waitForSelectorOpts !== 'object') throw new Error('waitForSelectorOpts should be a string')
-      if (opts?.selectorToWait && opts?.waitForSelectorOpts) {
-        await page.waitForSelector(opts.selectorToWait, opts.waitForSelectorOpts)
-      } else if (opts?.selectorToWait) {
-        await page.waitForSelector(opts?.selectorToWait)
+      if (typeof opts?.waitForSelector === 'undefined' && opts?.waitForSelectorOpts) throw new Error('WaitForSelector options provided without a selector')
+      if (opts?.waitForSelector && opts?.waitForSelectorOpts) {
+        await page.waitForSelector(opts.waitForSelector, opts.waitForSelectorOpts)
+      } else if (opts?.waitForSelector) {
+        await page.waitForSelector(opts?.waitForSelector)
       }
 
       let pdf
       if (opts?.pdfOpts && typeof opts.pdfOpts !== 'object') throw new Error('pdfOpts should be an object')
       if (opts?.pdfOpts) { pdf = await page.pdf(opts.pdfOpts) } else { pdf = await page.pdf(DEFAULT_PDF_OPTIONS) }
 
+      if (opts?.saveToFile && typeof opts?.saveToFile !== 'boolean') throw new Error('saveToFile should be a boolean')
       if (opts?.saveToFile && typeof opts.saveToFile === 'boolean' && opts.saveToFile) { fs.writeFileSync(`${process.cwd()}/${Date.now()}-puppe-pdf-export.pdf`, Buffer.from(pdf.buffer)) }
 
+      if (opts?.raw && typeof opts?.raw !== 'boolean') throw new Error("'raw' should be a boolean")
       if (opts?.raw && typeof opts.raw === 'boolean' && opts.raw) {
         return pdf
       }
 
+      if (opts?.stream && typeof opts?.stream !== 'boolean') throw new Error("'stream' should be a boolean")
       if (opts?.stream && typeof opts.stream === 'boolean' && opts.stream) {
         return new stream.Readable({
           read () {

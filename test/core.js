@@ -139,3 +139,49 @@ test('default behaviour -> should log page error', async (t) => {
 
   t.end()
 })
+
+test('if url exists and goTo opts not there it should work', async (t) => {
+
+})
+
+test('if url exists and goTo opts is there then it should take up the goTo opts', async (t) => {
+
+})
+
+test('if invalid goTo opts is provided, fail with a user-friendly err', async (t) => {
+
+})
+
+test('if invalid waitForSelector is provided, fail with a user-friendly err', async (t) => {})
+
+test('if valid waitForSelector is provided, should work', async (t) => {})
+
+test('if valid waitForSelectorOpts & selector is provided, should work', async (t) => {})
+
+test('if no selector is provided and valid waitForSelector is provided, should throw user friendly err', async (t) => {})
+
+test('if invalid pdfOpts is provided, should fail with user friendly err', async (t) => {})
+
+test('if valid pdfOpts is provided, should work', async (t) => {})
+
+test('if no pdfOpts is provided, should work by taking the default PDF opts', async (t) => {})
+
+test('if saveToFile is provided, should save the PDF', async (t) => {})
+
+test('if invalid saveToFile is passed, should throw user friendly err', async (t) => {})
+
+test('if raw is passed, then return the raw Uint8Array', async (t) => {})
+test('if invalid raw is passed, then should throw user friendly err', async (t) => {})
+
+test('if stream is passed true, then return the ReadableStream', async (t) => {})
+test('if invalid stream is passed, then should throw user friendly err', async (t) => {})
+
+test('by default, forgePdf should return a buffer', async (t) => {})
+
+test('check using all parameters', async (t) => {})
+
+test('multipage pdf generation', async (t) => {})
+
+test('external css', async (t) => {})
+test('external js', async (t) => {})
+test('file imports', async (t) => {})

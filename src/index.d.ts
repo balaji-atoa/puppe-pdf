@@ -27,7 +27,7 @@ declare namespace PuppePdf{
      */
     launchOpts?: launchOpts;
     goToOptions?: GoToOptions;
-    selectorToWait?: string;
+    waitForSelector?: string;
     waitForSelectorOpts?: WaitForSelectorOptions;
     pdfOpts?: PDFOptions
     saveToFile?: boolean;
