@@ -11,6 +11,6 @@ Setup docker desktop on local, run the below commands one by one.
 TODO: 
 
 Vue, fastify, react
-expose function, setCookie
+expose function, setCookie, customPath for saveToFile, conditions optimize
 CI/CD for test in windows and linux -> alpine, ubuntu deployments for node 18 and node 20
 improve express example

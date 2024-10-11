@@ -140,6 +140,7 @@ test('default behaviour -> should log page error', async (t) => {
   t.end()
 })
 
+// to be written
 test('if url exists and goTo opts not there it should work', async (t) => {
 
 })
