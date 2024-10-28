@@ -19,7 +19,7 @@ class PuppePdf {
       if (typeof opts !== 'object') throw new Error('Options should be an object or string')
 
       // invoke on demand
-      if (opts?.launchOpts && typeof launchOpts === 'object') {
+      if (opts?.launchOpts && typeof opts.launchOpts === 'object') {
         browser = await puppeteer.launch({
           ...DEFAULT_LAUNCH_OPTIONS, ...opts.launchOpts
         })
@@ -27,6 +27,11 @@ class PuppePdf {
 
       page = await browser.newPage()
       invoked = true
+      // add cookies
+      if (opts?.cookies && typeof opts.cookies === 'object' && opts.cookies.length > 0) {
+        await page.setCookie(opts.cookies)
+      }
+
       if (opts?.disableJavascript && typeof opts.disableJavascript !== 'boolean') throw new Error('disableJavascript should be a boolean')
       if (opts?.disableJavascript) { await page.setJavaScriptEnabled(false) }
       // if user agent is not set, it'll be slow.

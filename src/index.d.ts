@@ -1,4 +1,4 @@
-import { BrowserConnectOptions, GoToOptions, LaunchOptions, PDFOptions, PaperFormat, WaitForSelectorOptions } from "puppeteer";
+import { BrowserConnectOptions, CookieParam, GoToOptions, LaunchOptions, PDFOptions, PaperFormat, WaitForSelectorOptions } from "puppeteer";
 import type {Readable} from "stream"
 declare namespace PuppePdf{
   function forgePDF(otps: UrlOptions | string):Promise<Buffer | Readable | Uint8Array>
@@ -21,6 +21,9 @@ declare namespace PuppePdf{
      * the url which needs to be visited.
     */
     url?: string;
+    /**
+     * html that needs to be injected on the window (faster)
+     */
     html?: string;
     /**
      * The options passed to the browser during puppeteer browser launch.
@@ -34,6 +37,10 @@ declare namespace PuppePdf{
     raw?: boolean;
     stream?: boolean;
     disableJavascript?: boolean;
+    /**
+     * cookies that needs to be injected to the page.
+     */
+    cookies?: CookieParam[];
   }
 }
 export = PuppePdf;
