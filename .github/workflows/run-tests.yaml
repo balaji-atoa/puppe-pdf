@@ -9,12 +9,12 @@ on:
       - main
 
 jobs:
-  matrix-strategy:
-    strategy: 
-      matrix: 
-        version: [18.18, 20.18]
   test-runner:
     name: test runner
+    matrix-strategy:
+      strategy: 
+        matrix: 
+          version: [18.18, 20.18]
     runs-on: ubuntu-latest
     permissions:
       contents: read
